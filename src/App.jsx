@@ -1,5 +1,6 @@
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { FormProvider } from "./context/FormContext";
+import { Toaster } from "react-hot-toast"; // 1. IMPORT THIS
 
 // The 3D Background
 import Scene from "./components/canvas/Scene";
@@ -15,16 +16,24 @@ function App() {
   return (
     <FormProvider>
       <Router>
-        {/* THE BACKGROUND LAYER: Fixed behind everything */}
+        {/* 2. ADD THE TOASTER HERE */}
+        <Toaster 
+          position="top-center"
+          toastOptions={{
+            // Add custom Tailwind styling to the toasts!
+            className: 'bg-slate-800 text-white border border-white/20 backdrop-blur-md shadow-2xl',
+            duration: 4000,
+          }} 
+        />
+
+        {/* THE BACKGROUND LAYER */}
         <div className="fixed top-0 left-0 w-full h-full -z-10 bg-slate-900">
           <Scene />
         </div>
 
-        {/* THE FOREGROUND LAYER: The Glassmorphism Form Container */}
+        {/* THE FOREGROUND LAYER */}
         <div className="flex items-center justify-center min-h-screen p-4 overflow-hidden">
           <div className="relative z-10 w-full max-w-2xl p-8 transition-all duration-500 bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20">
-            
-            {/* The React Router swaps out the form steps right here */}
             <Routes>
               <Route path="/" element={<Step1_Personal />} />
               <Route path="/step-2" element={<Step2_Account />} />
@@ -32,7 +41,6 @@ function App() {
               <Route path="/step-4" element={<Step4_Plan />} />
               <Route path="/step-5" element={<Step5_Review />} />
             </Routes>
-
           </div>
         </div>
       </Router>
