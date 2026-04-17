@@ -1,0 +1,16 @@
+/* 1. Bootstrap MUST be on line 1 */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* 2. Tailwind MUST be immediately after */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Quick reset for our 3D background */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
